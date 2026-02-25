@@ -2,7 +2,7 @@ module terraform-azure-srch
 
 go 1.25.6
 
-require github.com/cloudnationhq/az-cn-go-validor v1.16.0
+require github.com/cloudnationhq/az-cn-go-validor v1.17.1
 
 require (
 	github.com/agext/levenshtein v1.2.3 // indirect
