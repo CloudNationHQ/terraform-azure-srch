@@ -21,13 +21,13 @@ The following requirements are needed by this module:
 
 - <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) (~> 1.0)
 
-- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 4.0)
+- <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) (~> 5.0)
 
 ## Providers
 
 The following providers are used by this module:
 
-- <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) (~> 4.0)
+- <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) (~> 5.0)
 
 ## Resources
 
@@ -40,7 +40,7 @@ The following resources are used by this module:
 
 The following input variables are required:
 
-### <a name="input_config"></a> [config](#input\_config)
+### <a name="input_search_service"></a> [search\_service](#input\_search\_service)
 
 Description: Configuration for the Azure Search service and its shared private link services.
 
@@ -54,16 +54,16 @@ object({
     sku                                      = string
     allowed_ips                              = optional(set(string))
     authentication_failure_mode              = optional(string)
-    customer_managed_key_enforcement_enabled = optional(bool, false)
-    hosting_mode                             = optional(string, "Default")
+    customer_managed_key_enforcement_enabled = optional(bool)
+    hosting_mode                             = optional(string)
     identity = optional(object({
       type         = string
       identity_ids = optional(set(string))
     }))
-    local_authentication_enabled  = optional(bool, true)
-    network_rule_bypass_option    = optional(string, "None")
-    partition_count               = optional(number, 1)
-    public_network_access_enabled = optional(bool, true)
+    local_authentication_enabled  = optional(bool)
+    network_rule_bypass_option    = optional(string)
+    partition_count               = optional(number)
+    public_network_access_enabled = optional(bool)
     replica_count                 = optional(number)
     semantic_search_sku           = optional(string)
     tags                          = optional(map(string))
@@ -137,11 +137,7 @@ To update the module's documentation run `make doc`
 
 We welcome contributions from the community! Whether it's reporting a bug, suggesting a new feature, or submitting a pull request, your input is highly valued.
 
-For more information, please see our contribution [guidelines](./CONTRIBUTING.md). <br><br>
-
-<a href="https://github.com/cloudnationhq/terraform-azure-srch/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=cloudnationhq/terraform-azure-srch" />
-</a>
+For more information, please see our contribution [guidelines](./CONTRIBUTING.md).
 
 ## License
 
@@ -151,4 +147,3 @@ MIT Licensed. See [LICENSE](https://github.com/cloudnationhq/terraform-azure-src
 
 - [Documentation](https://learn.microsoft.com/azure/search/)
 - [Rest Api](https://learn.microsoft.com/rest/api/searchservice/)
-- [Rest Api Specs](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/search)
