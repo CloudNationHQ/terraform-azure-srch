@@ -1,33 +1,33 @@
 resource "azurerm_search_service" "this" {
   resource_group_name = coalesce(
-    lookup(var.config, "resource_group_name", null),
+    var.search_service.resource_group_name,
     var.resource_group_name
   )
 
   location = coalesce(
-    lookup(var.config, "location", null),
+    var.search_service.location,
     var.location
   )
 
-  name                                     = var.config.name
-  sku                                      = var.config.sku
-  allowed_ips                              = var.config.allowed_ips
-  authentication_failure_mode              = var.config.authentication_failure_mode
-  customer_managed_key_enforcement_enabled = var.config.customer_managed_key_enforcement_enabled
-  hosting_mode                             = var.config.hosting_mode
-  local_authentication_enabled             = var.config.local_authentication_enabled
-  network_rule_bypass_option               = var.config.network_rule_bypass_option
-  partition_count                          = var.config.partition_count
-  public_network_access_enabled            = var.config.public_network_access_enabled
-  replica_count                            = var.config.replica_count
-  semantic_search_sku                      = var.config.semantic_search_sku
+  name                                     = var.search_service.name
+  sku                                      = var.search_service.sku
+  allowed_ips                              = var.search_service.allowed_ips
+  authentication_failure_mode              = var.search_service.authentication_failure_mode
+  customer_managed_key_enforcement_enabled = var.search_service.customer_managed_key_enforcement_enabled
+  hosting_mode                             = var.search_service.hosting_mode
+  local_authentication_enabled             = var.search_service.local_authentication_enabled
+  network_rule_bypass_option               = var.search_service.network_rule_bypass_option
+  partition_count                          = var.search_service.partition_count
+  public_network_access_enabled            = var.search_service.public_network_access_enabled
+  replica_count                            = var.search_service.replica_count
+  semantic_search_sku                      = var.search_service.semantic_search_sku
 
   tags = coalesce(
-    var.config.tags, var.tags
+    var.search_service.tags, var.tags
   )
 
   dynamic "identity" {
-    for_each = var.config.identity != null ? [var.config.identity] : []
+    for_each = var.search_service.identity != null ? { "this" = var.search_service.identity } : {}
 
     content {
       type         = identity.value.type
@@ -37,9 +37,7 @@ resource "azurerm_search_service" "this" {
 }
 
 resource "azurerm_search_shared_private_link_service" "this" {
-  for_each = coalesce(
-    var.config.shared_private_link_services, {}
-  )
+  for_each = var.search_service.shared_private_link_services
 
   name = coalesce(
     each.value.name, each.key
