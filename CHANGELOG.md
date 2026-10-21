@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/CloudNationHQ/terraform-azure-srch/compare/v2.0.0...v2.1.0) (2026-10-21)
+
+
+### Features
+
+* **deps:** bump github.com/klauspost/compress in /tests ([#10](https://github.com/CloudNationHQ/terraform-azure-srch/issues/10)) ([ba10070](https://github.com/CloudNationHQ/terraform-azure-srch/commit/ba10070db38324df7981c005f43f85a3a7415bde))
+
 ## [2.0.0](https://github.com/CloudNationHQ/terraform-azure-srch/compare/v1.0.0...v2.0.0) (2026-09-07)
 
 
